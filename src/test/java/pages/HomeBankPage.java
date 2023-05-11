@@ -30,13 +30,15 @@ public class HomeBankPage {
 
     private final static By DEPOSITS_AND_ACCOUNTS = By.xpath("//a[@ href='/chastnim-licam/vkladi/']");
 
+    private final static By CREDIT = By.xpath("//a[@ href='/chastnim-licam/krediti/']");
+
     private final Random random = new Random();
     public HomeBankPage openHomeBankPage(){
         Selenide.open(config.baseUrl());
         return this;
     }
     public HomeBankPage clickButtonCheckLimit(){
-        $(BUTTON_CHECK_LIMIT).shouldBe(Condition.visible).click();
+        $(BUTTON_CHECK_LIMIT).scrollIntoView(false).shouldBe(Condition.visible).click();
         return this;
     }
 
@@ -103,6 +105,11 @@ public class HomeBankPage {
 //    }
     public HomeBankPage clickDepositsAccounts(){
         $(DEPOSITS_AND_ACCOUNTS).click();
+        return this;
+    }
+
+    public HomeBankPage clickCredit(){
+        $(CREDIT).click();
         return this;
     }
 

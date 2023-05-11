@@ -13,13 +13,23 @@ public class DepositsPage {
 
     private final static By TIME_NEED_DEPOSIT_FIELD = By.xpath("//span[text()='18']");
 
-    private final static By SLIDER = By.xpath("//div [@ aria-valuemin='3']");
+    private final static By WANT_FILL = By.xpath("//div[text()= 'Хочу пополнять']");
+
+    private final static By OPEN_ONLINE = By.xpath("//div[text()= 'Открыть онлайн']");
+
+    private final static By BUTTON_OPEN = By.xpath("//a[@ data-testid='button']");
 
     private final static By FREE_PLACE = By.xpath("//h1[@ data-testid='heading']");
 
-    public DepositsPage inputSumDeposit1(){
+    private final static By PROFIT_VALUE = By.xpath("//div[contains(text(), 'Доход по вкладу')]/following-sibling::div");
+
+    private final static By PROFIT_END_VALUE = By.xpath("//div[contains(text(), 'Сумма в конце срока')]/following-sibling::div");
+
+    private final static By STAVKA_VALUE = By.xpath("//div[contains(text(), 'Ставка')]/following-sibling::div");
+
+    public DepositsPage inputSumDeposit(String sum){
         $(SUM_DEPOSIT_FIELD).click();
-        $(SUM_DEPOSIT_FIELD).setValue(" ");
+        $(SUM_DEPOSIT_FIELD).setValue(sum);
         return this;
     }
 
@@ -29,21 +39,15 @@ public class DepositsPage {
         return this;
     }
 
-    public DepositsPage inputSumDeposit2(){
-        $(SUM_DEPOSIT_FIELD).click();
-        $(SUM_DEPOSIT_FIELD).setValue("1000000000000000");
-        return this;
-    }
-
     public DepositsPage checkSumDeposit2(){
         $(FREE_PLACE).click();
         $(SUM_DEPOSIT_FIELD).shouldHave(Condition.value("50 000 000 ₽"));
         return this;
     }
 
-    public DepositsPage inputTimeDeposit1(){
+    public DepositsPage inputTimeDeposit(String time){
         $(TIME_DEPOSIT_FIELD).click();
-        $(TIME_DEPOSIT_FIELD).setValue("1000");
+        $(TIME_DEPOSIT_FIELD).setValue(time);
         return this;
     }
 
@@ -53,19 +57,13 @@ public class DepositsPage {
         return this;
     }
 
-    public DepositsPage inputTimeDeposit2(){
-        $(TIME_DEPOSIT_FIELD).click();
-        $(TIME_DEPOSIT_FIELD).setValue(" ");
-        return this;
-    }
-
     public DepositsPage checkTimeDeposit2(){
         $(FREE_PLACE).click();
         $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("3 месяца"));
         return this;
     }
 
-    public DepositsPage inputTimeDeposit3(){
+    public DepositsPage inputTimeDeposit2(){
         $(TIME_DEPOSIT_FIELD).click();
         $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
         $(TIME_DEPOSIT_FIELD).setValue("22");
@@ -79,14 +77,37 @@ public class DepositsPage {
     }
 
     public DepositsPage inputTimeDeposit4(){
-        $(SLIDER)
-                dragAndDropTo($(TIME_NEED_DEPOSIT_FIELD));
+        $(TIME_NEED_DEPOSIT_FIELD).click();
         return this;
     }
 
     public DepositsPage checkTimeDeposit4(){
         $(FREE_PLACE).click();
-        $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("20 месяцев"));
+        $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("18 месяцев"));
         return this;
     }
+
+    public DepositsPage wantFillAndOpenOnline(){
+        $(WANT_FILL).parent().parent().parent().click();
+        $(OPEN_ONLINE).parent().parent().parent().click();
+        return this;
+    }
+
+    public DepositsPage openDeposit(){
+        $(BUTTON_OPEN).click();
+        return this;
+    }
+
+    public String checkStavka() {
+        return $(STAVKA_VALUE).text();
+    }
+
+    public String checkProfit() {
+        return $(PROFIT_VALUE).text();
+    }
+
+    public String checkProfitEnd() {
+        return $(PROFIT_END_VALUE).text();
+    }
+
 }
