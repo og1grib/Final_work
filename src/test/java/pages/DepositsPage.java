@@ -27,73 +27,67 @@ public class DepositsPage {
 
     private final static By STAVKA_VALUE = By.xpath("//div[contains(text(), 'Ставка')]/following-sibling::div");
 
-    public DepositsPage inputSumDeposit(String sum){
+    public DepositsPage inputSumDeposit(String sum) {
         $(SUM_DEPOSIT_FIELD).click();
         $(SUM_DEPOSIT_FIELD).setValue(sum);
         return this;
     }
 
-    public DepositsPage checkSumDeposit1(){
+    public DepositsPage checkSumDeposit1() {
         $(FREE_PLACE).click();
         $(SUM_DEPOSIT_FIELD).shouldHave(Condition.value("1 000 ₽"));
         return this;
     }
 
-    public DepositsPage checkSumDeposit2(){
+    public DepositsPage checkSumDeposit2() {
         $(FREE_PLACE).click();
         $(SUM_DEPOSIT_FIELD).shouldHave(Condition.value("50 000 000 ₽"));
         return this;
     }
 
-    public DepositsPage inputTimeDeposit(String time){
+    public DepositsPage inputTimeDeposit(String time) {
         $(TIME_DEPOSIT_FIELD).click();
+        $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
         $(TIME_DEPOSIT_FIELD).setValue(time);
         return this;
     }
 
-    public DepositsPage checkTimeDeposit1(){
+    public DepositsPage checkTimeDeposit1() {
         $(FREE_PLACE).click();
         $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("36 месяцев"));
         return this;
     }
 
-    public DepositsPage checkTimeDeposit2(){
+    public DepositsPage checkTimeDeposit2() {
         $(FREE_PLACE).click();
         $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("3 месяца"));
         return this;
     }
 
-    public DepositsPage inputTimeDeposit2(){
-        $(TIME_DEPOSIT_FIELD).click();
-        $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
-        $(TIME_DEPOSIT_FIELD).setValue("22");
-        return this;
-    }
-
-    public DepositsPage checkTimeDeposit3(){
+    public DepositsPage checkTimeDeposit3() {
         $(FREE_PLACE).click();
         $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("24 месяца"));
         return this;
     }
 
-    public DepositsPage inputTimeDeposit4(){
+    public DepositsPage inputTimeDepositTrue() {
         $(TIME_NEED_DEPOSIT_FIELD).click();
         return this;
     }
 
-    public DepositsPage checkTimeDeposit4(){
+    public DepositsPage checkTimeDeposit4() {
         $(FREE_PLACE).click();
         $(TIME_DEPOSIT_FIELD).shouldHave(Condition.value("18 месяцев"));
         return this;
     }
 
-    public DepositsPage wantFillAndOpenOnline(){
+    public DepositsPage wantFillAndOpenOnline() {
         $(WANT_FILL).parent().parent().parent().click();
         $(OPEN_ONLINE).parent().parent().parent().click();
         return this;
     }
 
-    public DepositsPage openDeposit(){
+    public DepositsPage openDeposit() {
         $(BUTTON_OPEN).click();
         return this;
     }

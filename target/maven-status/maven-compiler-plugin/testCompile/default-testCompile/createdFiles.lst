@@ -1,10 +1,9 @@
-pages\DepositsPage.class
-pages\ConvenientDepositPage.class
-pages\HomeBankPage.class
 config\ProjectConfig.class
-tests\FourTest.class
 tests\BaseTest.class
 tests\SecondTest.class
 tests\FirstTest.class
 tests\FiveTest.class
 tests\ThirdTest.class
+pages\DepositsPage.class
+pages\HomeBankPage.class
+tests\FourTest.class

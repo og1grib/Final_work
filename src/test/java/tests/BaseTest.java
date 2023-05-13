@@ -14,7 +14,7 @@ public abstract class BaseTest {
     public static final ProjectConfig config = ConfigFactory.create(ProjectConfig.class);
 
     @Before
-    public void setUp(){
+    public void setUp() {
         WebDriverManager.chromedriver().setup();
         Selenide.clearBrowserCookies();
         Configuration.browser = "chrome";
@@ -22,11 +22,11 @@ public abstract class BaseTest {
         Configuration.browserSize = "1440x900";
         Configuration.timeout = 100000;
         Configuration.pageLoadTimeout = 100000;
-        Configuration.baseUrl ="http://localhost:8080";
+        Configuration.baseUrl = "http://localhost:8080";
     }
 
     @After
-    public void turnDown(){
+    public void turnDown() {
         Selenide.closeWebDriver();
     }
 }

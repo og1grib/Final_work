@@ -33,16 +33,28 @@ public class DepositConvenientPage {
 
     private final static By DATA_FIELD = By.xpath("//textarea [@ placeholder='Иванов Иван Иванович']");
 
-    public DepositConvenientPage setupDeposit() {
+    private final static By PHONE_FIELD = By.xpath("//input[@ placeholder='+7 000 000-00-00']");
+
+    private final static By CITY_FIELD = By.xpath("//input[@ placeholder='Выберите город']");
+
+    private final static By CITY_CHOOSE = By.xpath("//div[text()='Амурск']");
+
+    private final static By OFFICE_FIELD = By.xpath("//input[@ placeholder='Выберите офис']");
+
+    private final static By OFFICE_CHOOSE = By.xpath("//div[text()='Дополнительный офис № 25']");
+
+    private final static By APPLY_REQUEST = By.xpath("//div[@ id='depositForm']/h3");
+
+    public DepositConvenientPage setupDeposit(String time, String sum) {
         $(SUM_DEPOSIT_FIELD).scrollIntoView(true).click();
         $(TIME_DEPOSIT_FIELD).click();
         $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
         $(TIME_DEPOSIT_FIELD).click();
         $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
-        $(TIME_DEPOSIT_FIELD).setValue("18");
+        $(TIME_DEPOSIT_FIELD).setValue(time);
         $(SUM_DEPOSIT_FIELD).sendKeys(Keys.CONTROL + "a");
         $(SUM_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
-        $(SUM_DEPOSIT_FIELD).setValue("50000000");
+        $(SUM_DEPOSIT_FIELD).setValue(sum);
         $(MONTH_PERCENT).parent().parent().parent().click();
         return this;
     }
@@ -72,14 +84,53 @@ public class DepositConvenientPage {
         return this;
     }
 
-    public DepositConvenientPage checkInputFalseData(){
-        $(CAPTION_DATA).shouldHave(Condition.text("Используйте только кириллицу"));
+    public DepositConvenientPage inputData(String data){
+        $(DATA_FIELD).click();
+        $(DATA_FIELD).sendKeys(Keys.CONTROL + "a");
+        $(DATA_FIELD).sendKeys(Keys.BACK_SPACE);
+        $(DATA_FIELD).setValue(data);
+        $(BUTTON_SEND).click();
         return this;
     }
 
-    public DepositConvenientPage inputData(String value){
-        $(DATA_FIELD).setValue(value);
+    public DepositConvenientPage checkInputFalseData1(){
+        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Используйте только кириллицу"));
         return this;
     }
 
+    public DepositConvenientPage checkInputFalseData2(){
+        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Укажите фамилию, имя и отчество"));
+        return this;
+    }
+
+    public DepositConvenientPage inputPhone(int phone) {
+        $(PHONE_FIELD).click();
+        $(PHONE_FIELD).sendKeys(Keys.CONTROL + "a");
+        $(PHONE_FIELD).sendKeys(Keys.BACK_SPACE);
+        $(PHONE_FIELD).setValue(String.valueOf(phone));
+        $(BUTTON_SEND).click();
+        return this;
+    }
+
+    public DepositConvenientPage checkPhone() {
+        $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text("Введите верный номер телефона"));
+        return this;
+    }
+
+    public DepositConvenientPage chooseCity() {
+        $(CITY_FIELD).click();
+        $(CITY_CHOOSE).click();
+        return this;
+    }
+
+    public DepositConvenientPage chooseOffice() {
+        $(OFFICE_FIELD).click();
+        $(OFFICE_CHOOSE).click();
+        return this;
+    }
+
+    public DepositConvenientPage checkApply() {
+        $(APPLY_REQUEST).shouldHave(Condition.text("Заявка принята"));
+        return this;
+    }
 }

@@ -6,18 +6,16 @@ import com.codeborne.selenide.Selenide;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import java.util.Random;
-
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static tests.BaseTest.config;
 
 public class HomeBankPage {
-    private final static By PHONE_FIELD = By.xpath("//div[@ label='Номер телефона']");
+    private final static By PHONE_CAPTION = By.xpath("//div[@ label='Номер телефона']");
 
     private final static By PHONE_INPUT_FIELD = By.xpath("//input [@ type='tel']");
 
-    private final static By DATE_FIELD = By.xpath("//div[@ label='Серия и номер паспорта']");
+    private final static By DATE_CAPTION = By.xpath("//div[@ label='Серия и номер паспорта']");
 
     private final static By DATE_INPUT_FIELD = By.xpath("//input [@ type='text']");
 
@@ -35,7 +33,15 @@ public class HomeBankPage {
 
     private final static By BUSINESS_AND_IP = By.xpath("//a [@ href='/malomu-biznesu/']");
 
-    private final Random random = new Random();
+    private final static By PHONE_CODE_1 = By.xpath("//input[@ autocomplete='one-time-code'][1]");
+
+    private final static By PHONE_CODE_2 = By.xpath("//input[@ autocomplete='one-time-code'][2]");
+
+    private final static By PHONE_CODE_3 = By.xpath("//input[@ autocomplete='one-time-code'][3]");
+
+    private final static By PHONE_CODE_4 = By.xpath("//input[@ autocomplete='one-time-code'][4]");
+
+    private final static By FALSE_CODE = By.xpath("//div [text() = 'Неправильный код']");
 
     public HomeBankPage openHomeBankPage() {
         Selenide.open(config.baseUrl());
@@ -48,44 +54,36 @@ public class HomeBankPage {
     }
 
     public HomeBankPage checkNecessarilyFields() {
-        $(PHONE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
-        $(DATE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
+        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
+        $(DATE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
         return this;
     }
 
-    public HomeBankPage inputPhoneField() {
+    public HomeBankPage inputPhoneField(int phone) {
         $(PHONE_INPUT_FIELD).click();
-        $(PHONE_INPUT_FIELD).sendKeys(" ");
+        $(PHONE_INPUT_FIELD).sendKeys(Keys.CONTROL + "a");
+        $(PHONE_INPUT_FIELD).sendKeys(Keys.BACK_SPACE);
+        $(PHONE_INPUT_FIELD).setValue(String.valueOf(phone));
+        $(BUTTON_CHECK_LIMIT).click();
         return this;
     }
 
     public HomeBankPage checkTruePhoneField() {
-        $(PHONE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Введите верные цифры"));
+        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Введите верные цифры"));
         return this;
     }
 
-    public HomeBankPage inputDataField() {
+    public HomeBankPage inputDataField(int data) {
         $(DATE_INPUT_FIELD).click();
-        $(DATE_INPUT_FIELD).sendKeys("0");
+        $(DATE_INPUT_FIELD).sendKeys(Keys.CONTROL + "a");
+        $(DATE_INPUT_FIELD).sendKeys(Keys.BACK_SPACE);
+        $(DATE_INPUT_FIELD).setValue(String.valueOf(data));
+        $(BUTTON_CHECK_LIMIT).click();
         return this;
     }
 
     public HomeBankPage checkTrueDataField() {
-        $(DATE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Введите верные серию и номер паспорта"));
-        return this;
-    }
-
-    public HomeBankPage inputRandomPhoneData() {
-        $(PHONE_INPUT_FIELD).sendKeys(Keys.BACK_SPACE);
-        $(DATE_INPUT_FIELD).sendKeys(Keys.BACK_SPACE);
-        int maxP = 1999999999;
-        int minP = 1000000000;
-        int phone = random.nextInt(maxP - minP) + minP;
-        $(PHONE_INPUT_FIELD).sendKeys(String.valueOf(phone));
-        int maxD = 1999999999;
-        int minD = 1000000000;
-        int data = random.nextInt(maxD - minD) + minD;
-        $(DATE_INPUT_FIELD).sendKeys(String.valueOf(data));
+        $(DATE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Введите верные серию и номер паспорта"));
         return this;
     }
 
@@ -95,19 +93,19 @@ public class HomeBankPage {
         return this;
     }
 
-    //    public HomeBankPage inputCode(){
-//        int max = 0;
-//        int min = 9;
-//        int code = random.nextInt(max - min) + min;
-//        $(CODE_FIELD).click();
-//        $(CODE_FIELD).sendKeys(String.valueOf(code));
-//        return this;
-//    }
-//
-//    public HomeBankPage checkTrueCode(){
-//        $(FALSE_CODE).shouldHave(Condition.text("Неправильный код"));
-//        return this;
-//    }
+    public HomeBankPage inputPhoneCode(int num1, int num2, int num3, int num4) {
+        $(PHONE_CODE_1).shouldBe(Condition.visible).setValue(String.valueOf(num1));
+        $(PHONE_CODE_2).setValue(String.valueOf(num2));
+        $(PHONE_CODE_3).setValue(String.valueOf(num3));
+        $(PHONE_CODE_4).setValue(String.valueOf(num4));
+        return this;
+    }
+
+    public HomeBankPage checkFalseCode() {
+        $(FALSE_CODE).shouldHave(Condition.text("Неправильный код"));
+        return this;
+    }
+
     public HomeBankPage clickDepositsAccounts() {
         $(DEPOSITS_AND_ACCOUNTS).click();
         return this;

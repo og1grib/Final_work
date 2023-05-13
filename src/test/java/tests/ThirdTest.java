@@ -29,10 +29,10 @@ public class ThirdTest extends BaseTest {
     private final static String trueData = "Иван Иванов";
 
     private final Random random = new Random();
-    int maxP = 1999999999;
-    int minP = 1000000000;
-    int phoneTest=1;
-    int phoneTrue = random.nextInt(maxP - minP) + minP;
+    private final static int maxP = 1999999999;
+    private final static int minP = 1000000000;
+    private final static int phoneTest = 1;
+    int truePhone = random.nextInt(maxP - minP) + minP;
 
     private final static String testEmail = "0";
     private final static String trueEmail = "/@м.р";
@@ -43,12 +43,14 @@ public class ThirdTest extends BaseTest {
     private final static String testTime1 = " ";
     private final static String testTime2 = "100";
 
-    int maxC = 9;
-    int minC = 0;
+    private final static int maxC = 9;
+    private final static int minC = 0;
     int num1 = random.nextInt(maxC - minC) + minC;
     int num2 = random.nextInt(maxC - minC) + minC;
     int num3 = random.nextInt(maxC - minC) + minC;
     int num4 = random.nextInt(maxC - minC) + minC;
+
+
     @Test
     public void credit() {
         homeBankPage.openHomeBankPage()
@@ -89,9 +91,10 @@ public class ThirdTest extends BaseTest {
                 .checkTimeDeposit2()
                 .inputPhone(phoneTest)
                 .checkPhone()
-                .inputPhone(phoneTrue)
+                .inputPhone(truePhone)
                 .checkConfirmPhone()
                 .inputPhoneCode(num1, num2, num3, num4)
                 .checkFalseCode();
     }
+
 }

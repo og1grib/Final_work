@@ -25,9 +25,9 @@ public class FourTest extends BaseTest {
     String trueDateString = trueDate.format(formatter);
 
     private final Random random = new Random();
-    int maxP = 1999999999;
-    int minP = 1000000000;
-    int testPhone=1;
+    private final static int maxP = 1999999999;
+    private final static int minP = 1000000000;
+    private final static int testPhone = 1;
     int truePhone = random.nextInt(maxP - minP) + minP;
 
     private final static String testData1 = ".";
@@ -116,6 +116,6 @@ public class FourTest extends BaseTest {
                 .checkConfirmPhone()
                 .inputPhoneCode(num1, num2, num3, num4)
                 .checkFalseCode();
-
     }
+
 }
