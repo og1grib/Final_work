@@ -8,15 +8,14 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.After;
 import org.junit.Before;
 
-
-public abstract class BaseTest {
-
+public abstract class BaseMobileTest {
     public static final ProjectConfig config = ConfigFactory.create(ProjectConfig.class);
 
     @Before
     public void setUp(){
         WebDriverManager.chromedriver().setup();
         Selenide.clearBrowserCookies();
+        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1440x900";

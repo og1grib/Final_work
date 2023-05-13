@@ -3,7 +3,7 @@ package tests;
 import org.junit.Test;
 import pages.HomeBankPage;
 
-public  class FirstTest extends BaseTest{
+public  class FirstTest extends BaseMobileTest{
     HomeBankPage homeBankPage = new HomeBankPage();
 
     @Test

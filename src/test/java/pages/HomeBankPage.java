@@ -11,6 +11,7 @@ import java.util.Random;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static tests.BaseTest.config;
+
 public class HomeBankPage {
     private final static By PHONE_FIELD = By.xpath("//div[@ label='Номер телефона']");
 
@@ -26,46 +27,50 @@ public class HomeBankPage {
 
     private final static By CODE_FIELD_LABEL = By.xpath("//div[@ data-testid='confirmationField']/div[@ data-testid='text']");
 
-    private final static By FALSE_CODE = By.xpath("//div [@ class='Wrapper-sc-1vydk7-0 OlnRe']");
-
     private final static By DEPOSITS_AND_ACCOUNTS = By.xpath("//a[@ href='/chastnim-licam/vkladi/']");
 
     private final static By CREDIT = By.xpath("//a[@ href='/chastnim-licam/krediti/']");
 
+    private final static By IPOTEKA = By.xpath("//a [@ href='/chastnim-licam/ipoteka/']");
+
+    private final static By BUSINESS_AND_IP = By.xpath("//a [@ href='/malomu-biznesu/']");
+
     private final Random random = new Random();
-    public HomeBankPage openHomeBankPage(){
+
+    public HomeBankPage openHomeBankPage() {
         Selenide.open(config.baseUrl());
         return this;
     }
-    public HomeBankPage clickButtonCheckLimit(){
+
+    public HomeBankPage clickButtonCheckLimit() {
         $(BUTTON_CHECK_LIMIT).scrollIntoView(false).shouldBe(Condition.visible).click();
         return this;
     }
 
-    public HomeBankPage checkNecessarilyFields(){
+    public HomeBankPage checkNecessarilyFields() {
         $(PHONE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
         $(DATE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
         return this;
     }
 
-    public HomeBankPage inputPhoneField(){
+    public HomeBankPage inputPhoneField() {
         $(PHONE_INPUT_FIELD).click();
         $(PHONE_INPUT_FIELD).sendKeys(" ");
         return this;
     }
 
-    public HomeBankPage checkTruePhoneField(){
+    public HomeBankPage checkTruePhoneField() {
         $(PHONE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Введите верные цифры"));
         return this;
     }
 
-    public HomeBankPage inputDataField(){
+    public HomeBankPage inputDataField() {
         $(DATE_INPUT_FIELD).click();
         $(DATE_INPUT_FIELD).sendKeys("0");
         return this;
     }
 
-    public HomeBankPage checkTrueDataField(){
+    public HomeBankPage checkTrueDataField() {
         $(DATE_FIELD).parent().parent().lastChild().shouldHave(Condition.text("Введите верные серию и номер паспорта"));
         return this;
     }
@@ -84,13 +89,13 @@ public class HomeBankPage {
         return this;
     }
 
-    public HomeBankPage checkCodeField(){
+    public HomeBankPage checkCodeField() {
         $(CODE_FIELD_LABEL).shouldHave(Condition.text("Код из СМС"));
         $$(CODE_FIELD).shouldBe(CollectionCondition.size(4));
         return this;
     }
 
-//    public HomeBankPage inputCode(){
+    //    public HomeBankPage inputCode(){
 //        int max = 0;
 //        int min = 9;
 //        int code = random.nextInt(max - min) + min;
@@ -103,16 +108,24 @@ public class HomeBankPage {
 //        $(FALSE_CODE).shouldHave(Condition.text("Неправильный код"));
 //        return this;
 //    }
-    public HomeBankPage clickDepositsAccounts(){
+    public HomeBankPage clickDepositsAccounts() {
         $(DEPOSITS_AND_ACCOUNTS).click();
         return this;
     }
 
-    public HomeBankPage clickCredit(){
+    public HomeBankPage clickCredit() {
         $(CREDIT).click();
         return this;
     }
 
+    public HomeBankPage clickIpoteka() {
+        $(IPOTEKA).click();
+        return this;
+    }
 
+    public HomeBankPage clickBusinessAndIp() {
+        $(BUSINESS_AND_IP).click();
+        return this;
+    }
 
 }

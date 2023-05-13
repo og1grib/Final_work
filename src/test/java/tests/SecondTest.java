@@ -1,14 +1,14 @@
 package tests;
 
 import org.junit.Test;
-import pages.ConvenientDepositPage;
+import pages.DepositConvenientPage;
 import pages.DepositsPage;
 import pages.HomeBankPage;
 
 public class SecondTest extends BaseTest {
     HomeBankPage homeBankPage = new HomeBankPage();
     DepositsPage depositsPage = new DepositsPage();
-    ConvenientDepositPage convenientDepositPage = new ConvenientDepositPage();
+    DepositConvenientPage depositConvenientPage = new DepositConvenientPage();
 
     String testSum1 = " ";
     String testSum2 = "1000000000000000";
@@ -43,7 +43,7 @@ public class SecondTest extends BaseTest {
 
         depositsPage.openDeposit();
 
-        convenientDepositPage.setupDeposit()
+        depositConvenientPage.setupDeposit()
                 .checkDepositValues(stavka,profit,profitEnd)
                 .clickArrange()
                 .clickSend()

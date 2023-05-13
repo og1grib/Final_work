@@ -6,7 +6,7 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class ConvenientDepositPage {
+public class DepositConvenientPage {
     private final static By SUM_DEPOSIT_FIELD = By.xpath("//div[@ label='Сумма вклада']/input");
 
     private final static By TIME_DEPOSIT_FIELD = By.xpath("//div[@ label='Срок вклада']/input");
@@ -33,7 +33,7 @@ public class ConvenientDepositPage {
 
     private final static By DATA_FIELD = By.xpath("//textarea [@ placeholder='Иванов Иван Иванович']");
 
-    public ConvenientDepositPage setupDeposit() {
+    public DepositConvenientPage setupDeposit() {
         $(SUM_DEPOSIT_FIELD).scrollIntoView(true).click();
         $(TIME_DEPOSIT_FIELD).click();
         $(TIME_DEPOSIT_FIELD).sendKeys(Keys.BACK_SPACE);
@@ -47,24 +47,24 @@ public class ConvenientDepositPage {
         return this;
     }
 
-    public ConvenientDepositPage checkDepositValues(String stavka,String profit,String profitEnd){
+    public DepositConvenientPage checkDepositValues(String stavka, String profit, String profitEnd){
         $(CHECK_STAVKA_VALUE).shouldHave(Condition.text(stavka));
         $(CHECK_PROFIT_VALUE).shouldHave(Condition.text(profit));
         $(CHECK_PROFIT_END_VALUE).shouldHave(Condition.text(profitEnd));
         return this;
     }
 
-    public ConvenientDepositPage clickArrange(){
+    public DepositConvenientPage clickArrange(){
         $(BUTTON_ARRANGE_ONLINE).parent().parent().parent().click();
         return this;
     }
 
-    public ConvenientDepositPage clickSend(){
+    public DepositConvenientPage clickSend(){
         $(BUTTON_SEND).parent().parent().parent().scrollIntoView(false).click();
         return this;
     }
 
-    public ConvenientDepositPage checkCaptions(){
+    public DepositConvenientPage checkCaptions(){
         $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Укажите фамилию, имя и отчество контактного лица"));
         $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text("Введите верный номер телефона"));
         $(CAPTION_CITY).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Выберите ваш населенный пункт"));
@@ -72,12 +72,12 @@ public class ConvenientDepositPage {
         return this;
     }
 
-    public ConvenientDepositPage checkInputFalseData(){
+    public DepositConvenientPage checkInputFalseData(){
         $(CAPTION_DATA).shouldHave(Condition.text("Используйте только кириллицу"));
         return this;
     }
 
-    public ConvenientDepositPage inputData(String value){
+    public DepositConvenientPage inputData(String value){
         $(DATA_FIELD).setValue(value);
         return this;
     }
