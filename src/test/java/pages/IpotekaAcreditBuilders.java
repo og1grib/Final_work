@@ -145,7 +145,7 @@ public class IpotekaAcreditBuilders {
     }
 
     public IpotekaAcreditBuilders allowConditions() {
-        $(ALLOW_CONDITIONS).lastChild().lastChild().click();
+        $(ALLOW_CONDITIONS).lastChild().click();
         return this;
     }
 

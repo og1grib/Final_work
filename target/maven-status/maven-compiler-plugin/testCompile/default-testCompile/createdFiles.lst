@@ -1,9 +1,17 @@
+pages\CreditCashPage.class
+pages\IpotekaAcreditBuilders.class
 config\ProjectConfig.class
+pages\DepositConvenientPage.class
+tests\BaseMobileTest.class
 tests\BaseTest.class
 tests\SecondTest.class
 tests\FirstTest.class
+pages\CreditPage.class
 tests\FiveTest.class
 tests\ThirdTest.class
 pages\DepositsPage.class
 pages\HomeBankPage.class
 tests\FourTest.class
+pages\IpotekaPage.class
+pages\BusinessPaymentAccountantPage.class
+pages\BusinessPage.class

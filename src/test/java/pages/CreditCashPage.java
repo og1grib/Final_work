@@ -115,7 +115,7 @@ public class CreditCashPage {
     }
 
     public CreditCashPage allowConditions() {
-        $(ALLOW_CONDITIONS).lastChild().lastChild().click();
+        $(ALLOW_CONDITIONS).lastChild().click();
         return this;
     }
 
