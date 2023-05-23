@@ -1,37 +1,42 @@
-name: Test (parallel)
+name: WEB tests MTS
 
-on: [workflow_dispatch]
+env:
+  OS: ubuntu-latest
+
+on:
+  push
 
 jobs:
-  test:
-    name: Test
+  run_tests:
     runs-on: ubuntu-latest
 
-    container:
-      image: node:19
-
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: ['chrome', 'firefox', 'edge']
-
-    services:
-      selenium:
-        image: selenium/standalone-${{ matrix.browser }}
-        options: --shm-size=2gb
-
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - name: "Скачивание selenoid"
+        run: curl -s https://aerokube.com/cm/bash  | bash
+      - name: "Расширение прав на запуск selenoid"
+        run: chmod +x ./cm
+      - name: "Запуск selenoid"
+        run: ./cm selenoid start --vnc
+      - name: "Запуск selenoid-ui"
+        run: ./cm selenoid-ui start
+      - name: "Использование ветки main репозитория"
+        uses: actions/checkout@v3
+      - name: "Запуск тестов"
+        run: mvn clean test
+        continue-on-error: true
+      - name: "Генерация allure-report"
+        uses: simple-elf/allure-report-action@master
+        id: allure-report
         with:
-          node-version: '19'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run test
-        env:
-          BROWSER: ${{ matrix.browser }}
-      - uses: actions/upload-artifact@v3
-        if: always()
+          allure_results: target/allure-results
+          gh_pages: gh-pages
+          allure_report: target/allure-report
+          allure_history: target/allure-history
+
+      - name: "Создание ветки gh-pages содержащей allure report"
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          name: ${{ matrix.browser }}
-          path: screenshots/
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: target/allure-history
