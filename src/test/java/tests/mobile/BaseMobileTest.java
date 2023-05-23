@@ -2,8 +2,10 @@ package tests.mobile;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import config.ProjectConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +23,10 @@ public abstract class BaseMobileTest {
         Configuration.browserSize = "400x800";
         Configuration.timeout = 100000;
         Configuration.pageLoadTimeout = 100000;
-//        Configuration.baseUrl = "http://localhost:8080";
+
+        Configuration.remote = "http://localhost:4444/wd/hub";
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
 
     @AfterEach
