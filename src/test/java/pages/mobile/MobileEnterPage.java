@@ -1,6 +1,7 @@
 package pages.mobile;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -14,6 +15,7 @@ public class MobileEnterPage {
 
     private final static By PHONE_FIELD_CAPTION = By.xpath("//div[@ data-testid='error']");
 
+    @Step("Вводим в поле номера телефона: {0}")
     public MobileEnterPage inputPhoneField(long phone) {
         $(PHONE_FIELD).shouldBe(Condition.visible).click();
         $(PHONE_FIELD).sendKeys(Keys.CONTROL + "a");
@@ -23,14 +25,9 @@ public class MobileEnterPage {
         return this;
     }
 
-    public MobileEnterPage checkTruePhoneField1() {
-        $(PHONE_FIELD_CAPTION).shouldHave(Condition.text("Номер телефона должен содержать 10 цифр, например, +7 912 345-67-89"));
+    @Step("Проверяем, что под полем телефона появилась надпись: {0}")
+    public MobileEnterPage checkTruePhoneField(String phoneCaption) {
+        $(PHONE_FIELD_CAPTION).shouldHave(Condition.text(phoneCaption));
         return this;
     }
-
-    public MobileEnterPage checkTruePhoneField2() {
-        $(PHONE_FIELD_CAPTION).shouldHave(Condition.text("Неправильный номер телефона"));
-        return this;
-    }
-
 }

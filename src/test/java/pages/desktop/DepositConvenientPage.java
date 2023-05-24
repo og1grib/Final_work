@@ -1,6 +1,7 @@
 package pages.desktop;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -45,6 +46,7 @@ public class DepositConvenientPage {
 
     private final static By APPLY_REQUEST = By.xpath("//div[@ id='depositForm']/h3");
 
+    @Step("Выставить в поля нужны данные по депозиту:{0}")
     public DepositConvenientPage setupDeposit(String time, String sum) {
         $(SUM_DEPOSIT_FIELD).scrollIntoView(true).click();
         $(TIME_DEPOSIT_FIELD).click();
@@ -59,50 +61,52 @@ public class DepositConvenientPage {
         return this;
     }
 
-    public DepositConvenientPage checkDepositValues(String stavka, String profit, String profitEnd){
+    @Step("Проверяем \"Ставку\", \"Доход по вкладу\", \"Сумма в конце срока\"")
+    public DepositConvenientPage checkDepositValues(String stavka, String profit, String profitEnd) {
         $(CHECK_STAVKA_VALUE).shouldHave(Condition.text(stavka));
         $(CHECK_PROFIT_VALUE).shouldHave(Condition.text(profit));
         $(CHECK_PROFIT_END_VALUE).shouldHave(Condition.text(profitEnd));
         return this;
     }
 
-    public DepositConvenientPage clickArrange(){
+    @Step("Нажимаем кнопку \"Оформить онлайн\"")
+    public DepositConvenientPage clickArrange() {
         $(BUTTON_ARRANGE_ONLINE).parent().parent().parent().click();
         return this;
     }
 
-    public DepositConvenientPage clickSend(){
+    @Step("Нажимаем кнопку \"Отправить\"")
+    public DepositConvenientPage clickSend() {
         $(BUTTON_SEND).parent().parent().parent().scrollIntoView(false).click();
         return this;
     }
 
-    public DepositConvenientPage checkCaptions(){
-        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Укажите фамилию, имя и отчество контактного лица"));
-        $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text("Введите верный номер телефона"));
-        $(CAPTION_CITY).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Выберите ваш населенный пункт"));
-        $(CAPTION_OFFICE).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Выберите офис"));
+    @Step("Проверяем, что под полями есть надписи \"Укажите фамилию, имя и отчество контактного лица\",\"Введите верный номер телефона\",\"Выберите ваш населенный пункт\", \"Выберите офис\"")
+    public DepositConvenientPage checkCaptions(String nameCaption, String phoneCaption, String cityCaption, String officeCaption) {
+        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text(nameCaption));
+        $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text(phoneCaption));
+        $(CAPTION_CITY).parent().parent().parent().parent().lastChild().shouldHave(Condition.text(cityCaption));
+        $(CAPTION_OFFICE).parent().parent().parent().parent().lastChild().shouldHave(Condition.text(officeCaption));
         return this;
     }
 
-    public DepositConvenientPage inputData(String data){
+    @Step("Вводим в поле \"ФИО\" {0}")
+    public DepositConvenientPage inputData(String data) {
         $(DATA_FIELD).click();
         $(DATA_FIELD).sendKeys(Keys.CONTROL + "a");
         $(DATA_FIELD).sendKeys(Keys.BACK_SPACE);
         $(DATA_FIELD).setValue(data);
-        $(BUTTON_SEND).click();
+        $(BUTTON_SEND).scrollTo().click();
         return this;
     }
 
-    public DepositConvenientPage checkInputFalseData1(){
-        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Используйте только кириллицу"));
+    @Step("Проверяем надпись под полем \"Используйте только кириллицу\"")
+    public DepositConvenientPage checkInputFalseData(String dataCaption) {
+        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text(dataCaption));
         return this;
     }
 
-    public DepositConvenientPage checkInputFalseData2(){
-        $(CAPTION_DATA).parent().parent().parent().parent().lastChild().shouldHave(Condition.text("Укажите фамилию, имя и отчество"));
-        return this;
-    }
-
+    @Step("Вводим в поле \"Мобильный телефон\" {0}")
     public DepositConvenientPage inputPhone(int phone) {
         $(PHONE_FIELD).click();
         $(PHONE_FIELD).sendKeys(Keys.CONTROL + "a");
@@ -112,25 +116,29 @@ public class DepositConvenientPage {
         return this;
     }
 
-    public DepositConvenientPage checkPhone() {
-        $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text("Введите верный номер телефона"));
+    @Step("Проверяем надпись под полем \"Мобильный телефон\"")
+    public DepositConvenientPage checkPhone(String phoneCaption) {
+        $(CAPTION_PHONE).parent().parent().lastChild().shouldHave(Condition.text(phoneCaption));
         return this;
     }
 
+    @Step("Выбираем город")
     public DepositConvenientPage chooseCity() {
         $(CITY_FIELD).click();
         $(CITY_CHOOSE).click();
         return this;
     }
 
+    @Step("Выбираем офис")
     public DepositConvenientPage chooseOffice() {
         $(OFFICE_FIELD).click();
         $(OFFICE_CHOOSE).click();
         return this;
     }
 
-    public DepositConvenientPage checkApply() {
-        $(APPLY_REQUEST).shouldHave(Condition.text("Заявка принята"));
+    @Step("Проверить окошко с заголовком \"Заявка принята\"")
+    public DepositConvenientPage checkApply(String applyCaption) {
+        $(APPLY_REQUEST).shouldHave(Condition.text(applyCaption));
         return this;
     }
 }

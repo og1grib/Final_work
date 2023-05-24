@@ -1,6 +1,7 @@
 package pages.desktop;
 
 import com.codeborne.selenide.Condition;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
@@ -32,25 +33,29 @@ public class CreditCashPage {
     private final static By PHONE_CODE_4 = By.xpath("//input[@ autocomplete='one-time-code'][4]");
     private final static By FALSE_CODE = By.xpath("//div [text() = 'Неправильный код']");
 
+    @Step("Нажимаем на кнопку \"Далее\"")
     public CreditCashPage clickButtonNext() {
         $(BUTTON_NEXT).scrollIntoView(false).click();
         return this;
     }
 
-    public CreditCashPage checkCaptions() {
-        $(GOAL_CAPTION).parent().lastChild().shouldHave(Condition.text("Это поле обязательно для заполнения"));
-        $(DATA_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Введите ФИО полностью"));
-        $(BIRTHDAY_CAPTION).parent().parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
-        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Обязательное поле"));
+    @Step("Проверяем надписи обязательности заполнения полей у \"Цель кредита\", \"ФИО\", \"Дата рождения\", \"Мобильный телефон\"")
+    public CreditCashPage checkCaptions(String goalCaption, String dataCaption, String birthdayCaption, String phoneCaption) {
+        $(GOAL_CAPTION).parent().lastChild().shouldHave(Condition.text(goalCaption));
+        $(DATA_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(dataCaption));
+        $(BIRTHDAY_CAPTION).parent().parent().parent().lastChild().shouldHave(Condition.text(birthdayCaption));
+        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(phoneCaption));
         return this;
     }
 
+    @Step("Выбираем \"Цель кредита\" - \"Автомобиль\"")
     public CreditCashPage goalCredit() {
         $(GOAL_DROPDOWN).click();
         $(GOAL_CAR).click();
         return this;
     }
 
+    @Step("Вводим в поле \"ФИО\" {0}")
     public CreditCashPage inputData(String data) {
         $(DATA_FIELD).clear();
         $(DATA_FIELD).setValue(data);
@@ -58,16 +63,13 @@ public class CreditCashPage {
         return this;
     }
 
-    public CreditCashPage checkCaptionData1() {
-        $(DATA_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Используйте только кириллицу"));
+    @Step("Проверяем надпись под полем \"ФИО\" {0}")
+    public CreditCashPage checkCaptionData(String dataCaption) {
+        $(DATA_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(dataCaption));
         return this;
     }
 
-    public CreditCashPage checkCaptionData2() {
-        $(DATA_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Не более 255 символов"));
-        return this;
-    }
-
+    @Step("Вводим в поле \"Дата рождения\" {0}")
     public CreditCashPage inputBirthday(String birthday) {
         $(BIRTHDAY_FIELD).sendKeys(Keys.CONTROL + "a");
         $(BIRTHDAY_FIELD).sendKeys(Keys.BACK_SPACE);
@@ -76,16 +78,13 @@ public class CreditCashPage {
         return this;
     }
 
-    public CreditCashPage checkBirthday1() {
-        $(BIRTHDAY_CAPTION).parent().parent().parent().lastChild().shouldHave(Condition.text("Возраст клиента должен быть не более 70 лет"));
+    @Step("Проверяем надпись под полем \"Дата рождения\" {0}")
+    public CreditCashPage checkBirthday(String birthdayCaption) {
+        $(BIRTHDAY_CAPTION).parent().parent().parent().lastChild().shouldHave(Condition.text(birthdayCaption));
         return this;
     }
 
-    public CreditCashPage checkBirthday2() {
-        $(BIRTHDAY_CAPTION).parent().parent().parent().lastChild().shouldHave(Condition.text("Возраст клиента должен быть не менее 20 лет"));
-        return this;
-    }
-
+    @Step("Вводим в поле \"Мобильный телефон\" {0}")
     public CreditCashPage inputPhone(int phone) {
         $(PHONE_FIELD).click();
         $(PHONE_FIELD).sendKeys(Keys.CONTROL + "a");
@@ -95,11 +94,13 @@ public class CreditCashPage {
         return this;
     }
 
-    public CreditCashPage checkPhone() {
-        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Введите верный номер телефона"));
+    @Step("Проверяем надпись под полем \"Мобильный телефон\" {0}")
+    public CreditCashPage checkPhone(String mobileCaption) {
+        $(PHONE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(mobileCaption));
         return this;
     }
 
+    @Step("Вводим в поле \"Электронная почта\" {0}")
     public CreditCashPage inputEmail(String email) {
         $(EMAIL_FIELD).click();
         $(EMAIL_FIELD).sendKeys(Keys.CONTROL + "a");
@@ -109,62 +110,53 @@ public class CreditCashPage {
         return this;
     }
 
-    public CreditCashPage checkEmail() {
-        $(EMAIL_CAPTION).parent().parent().lastChild().shouldHave(Condition.text("Введите верный электронный адрес"));
+    @Step("Проверяем надпись под полем \"Электронная почта\" {0}")
+    public CreditCashPage checkEmail(String emailCaption) {
+        $(EMAIL_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(emailCaption));
         return this;
     }
 
+    @Step("Нажимаем на поле \"Я согласен с условиями рассмотрения заявки\"")
     public CreditCashPage allowConditions() {
-        $(ALLOW_CONDITIONS).lastChild().click();
+        $(ALLOW_CONDITIONS).lastChild().scrollTo().click();
         return this;
     }
 
-    public CreditCashPage checkAllow() {
-        $(ALLOW_CONDITIONS).parent().parent().parent().lastChild().shouldHave(Condition.text("Для подачи заявки необходимо дать согласие на этот пункт"));
+    @Step("Проверяем надпись обязательности приема условий рассмотрения заявки {0}")
+    public CreditCashPage checkAllow(String conditionCaption) {
+        $(ALLOW_CONDITIONS).parent().parent().parent().lastChild().shouldHave(Condition.text(conditionCaption));
         return this;
     }
 
+    @Step("Вводим в поле \"Сумма\" {0}")
     public CreditCashPage inputSumCredit(String sum) {
         $(SUM_CREDIT_FIELD).click();
         $(SUM_CREDIT_FIELD).setValue(sum);
         return this;
     }
 
-    public CreditCashPage checkSumCredit1() {
+    @Step("Проверяем оставшееся в поле \"Сумма\" значение {0}")
+    public CreditCashPage checkSumCredit(String sum) {
         $(FREE_PLACE).click();
-        $(SUM_CREDIT_FIELD).shouldHave(Condition.value("20 000 ₽"));
+        $(SUM_CREDIT_FIELD).shouldHave(Condition.value(sum));
         return this;
     }
 
-    public CreditCashPage checkSumCredit2() {
-        $(FREE_PLACE).click();
-        $(SUM_CREDIT_FIELD).shouldHave(Condition.value("5 000 000 ₽"));
-        return this;
-    }
-
+    @Step("Вводим в поле \"Срок\" {0}")
     public CreditCashPage inputTimeCredit(String time) {
         $(TIME_CREDIT_FIELD).click();
         $(TIME_CREDIT_FIELD).setValue(time);
         return this;
     }
 
-    public CreditCashPage checkTimeCredit1() {
+    @Step("Проверяем оставшееся в поле \"Срок\" значение {0}")
+    public CreditCashPage checkTimeCredit(String timeCaption) {
         $(FREE_PLACE).click();
-        $(TIME_CREDIT_FIELD).shouldHave(Condition.value("12 месяцев"));
+        $(TIME_CREDIT_FIELD).shouldHave(Condition.value(timeCaption));
         return this;
     }
 
-    public CreditCashPage checkTimeDeposit2() {
-        $(FREE_PLACE).click();
-        $(TIME_CREDIT_FIELD).shouldHave(Condition.value("60 месяцев"));
-        return this;
-    }
-
-    public CreditCashPage checkConfirmPhone() {
-        $(CONFIRM_NUMBER).shouldHave(Condition.text("Подтвердите номер телефона"));
-        return this;
-    }
-
+    @Step("Вводим код рандомный код в \"Код из СМС\"")
     public CreditCashPage inputPhoneCode(int num1, int num2, int num3, int num4) {
         $(PHONE_CODE_1).shouldBe(Condition.visible).setValue(String.valueOf(num1));
         $(PHONE_CODE_2).setValue(String.valueOf(num2));
@@ -173,8 +165,9 @@ public class CreditCashPage {
         return this;
     }
 
-    public CreditCashPage checkFalseCode() {
-        $(FALSE_CODE).shouldHave(Condition.text("Неправильный код"));
+    @Step("Проверяем надпись {0}")
+    public CreditCashPage checkFalseCode(String codeFalse) {
+        $(FALSE_CODE).shouldHave(Condition.text(codeFalse));
         return this;
     }
 }
