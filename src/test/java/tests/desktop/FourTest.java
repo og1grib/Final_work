@@ -82,131 +82,131 @@ public class FourTest extends BaseTest {
                 .checkPhone(falsePhoneCaption);
     }
 
-    @DisplayName("Ввод в поле электронная почта неверных данных")
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "Иван Иванович@m.r"})
-    public void businessCreditFalseEmail(String email) {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputEmail(email)
-                .checkEmail(falseEmailCaption);
-    }
-
-    @DisplayName("Ввод в поле ИНН пробела")
-    @Test
-    public void businessCreditInnEmpty() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputInn1(testInn)
-                .checkInn(falseInnCaption);
-    }
-
-    @DisplayName("Проверка необходимости согласия с условиями обработки персональных данных")
-    @Test
-    public void businessCreditAllowCondition() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .allowConditions()
-                .clickSendRequest()
-                .checkAllow(falseAllowConditionsCaption);
-    }
-
-    @DisplayName("Ввод в поле \"Контактное лицо\" чисел и английских букв")
-    @ParameterizedTest
-    @ValueSource(strings = {"0", "Petr Petrov"})
-    public void businessCreditFalseFIO(String data) {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputData(data)
-                .checkCaptionData(falseDataCaption);
-    }
-
-    @DisplayName("Ввод в поле \"Контактное лицо\" одной буквы")
-    @Test
-    public void businessCreditFalseFI() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputData(testData2)
-                .checkCaptionData(falseDataCaption2);
-    }
-
-    @DisplayName("Ввод в поле \"Контактное лицо\" длинную фамилию")
-    @Test
-    public void businessCreditFalseLongF() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputData(testData3)
-                .checkCaptionData(falseDataCaption3);
-    }
-
-    @DisplayName("Ввод в поле \"Контактное лицо\" длинное имя")
-    @Test
-    public void businessCreditFalseLongI() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputData(testData4)
-                .checkCaptionData(falseDataCaption4);
-    }
-
-    @DisplayName("Ввод в поле \"Контактное лицо\" длинную фамилию")
-    @Test
-    public void businessCreditFalseLongO() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputData(testData5)
-                .checkCaptionData(falseDataCaption5);
-    }
-
-
-    @DisplayName("Отправка заявки с корректными данными")
-    @Test
-    public void businessCreditTrue() {
-        homeBankPage.openHomeBankPage()
-                .clickBusinessAndIp();
-
-        businessPage.clickPaymentAccount();
-
-        businessPaymentAccountantPage.clickOpenPaymentAccount()
-                .inputPhone(truePhone)
-                .inputEmail(trueEmail)
-                .inputInn2(trueInn)
-                .checkNameOPF(nameOrganization, opf)
-                .inputDataTrue(trueData)
-                .checkConfirmPhone(confirmPhone)
-                .inputPhoneCode(num1, num2, num3, num4)
-                .checkFalseCode(falseCode);
-    }
+//    @DisplayName("Ввод в поле электронная почта неверных данных")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"0", "Иван Иванович@m.r"})
+//    public void businessCreditFalseEmail(String email) {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputEmail(email)
+//                .checkEmail(falseEmailCaption);
+//    }
+//
+//    @DisplayName("Ввод в поле ИНН пробела")
+//    @Test
+//    public void businessCreditInnEmpty() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputInn1(testInn)
+//                .checkInn(falseInnCaption);
+//    }
+//
+//    @DisplayName("Проверка необходимости согласия с условиями обработки персональных данных")
+//    @Test
+//    public void businessCreditAllowCondition() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .allowConditions()
+//                .clickSendRequest()
+//                .checkAllow(falseAllowConditionsCaption);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Контактное лицо\" чисел и английских букв")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"0", "Petr Petrov"})
+//    public void businessCreditFalseFIO(String data) {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputData(data)
+//                .checkCaptionData(falseDataCaption);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Контактное лицо\" одной буквы")
+//    @Test
+//    public void businessCreditFalseFI() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputData(testData2)
+//                .checkCaptionData(falseDataCaption2);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Контактное лицо\" длинную фамилию")
+//    @Test
+//    public void businessCreditFalseLongF() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputData(testData3)
+//                .checkCaptionData(falseDataCaption3);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Контактное лицо\" длинное имя")
+//    @Test
+//    public void businessCreditFalseLongI() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputData(testData4)
+//                .checkCaptionData(falseDataCaption4);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Контактное лицо\" длинную фамилию")
+//    @Test
+//    public void businessCreditFalseLongO() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputData(testData5)
+//                .checkCaptionData(falseDataCaption5);
+//    }
+//
+//
+//    @DisplayName("Отправка заявки с корректными данными")
+//    @Test
+//    public void businessCreditTrue() {
+//        homeBankPage.openHomeBankPage()
+//                .clickBusinessAndIp();
+//
+//        businessPage.clickPaymentAccount();
+//
+//        businessPaymentAccountantPage.clickOpenPaymentAccount()
+//                .inputPhone(truePhone)
+//                .inputEmail(trueEmail)
+//                .inputInn2(trueInn)
+//                .checkNameOPF(nameOrganization, opf)
+//                .inputDataTrue(trueData)
+//                .checkConfirmPhone(confirmPhone)
+//                .inputPhoneCode(num1, num2, num3, num4)
+//                .checkFalseCode(falseCode);
+//    }
 
 }

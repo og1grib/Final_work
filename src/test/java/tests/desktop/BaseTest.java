@@ -33,7 +33,7 @@ public abstract class BaseTest {
         Selenide.clearBrowserCookies();
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "1440x900";
         Configuration.timeout = 50000;
         Configuration.pageLoadTimeout = 50000;
         Configuration.remote = "http://localhost:4444/wd/hub";

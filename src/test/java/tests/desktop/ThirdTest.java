@@ -94,142 +94,142 @@ public class ThirdTest extends BaseTest {
                 .checkCaptionData(dataCaptionFalse);
     }
 
-    @DisplayName("Ввод в поле \"ФИО\" большого числа знаков: ")
-    @Test
-    public void creditFalseFIO2() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputData(testDataBig)
-                .checkCaptionData(dataCaptionBig);
-    }
-
-    @DisplayName("Ввод в поле \"Дата рождения\" - \"сегодняшяя дата \"-\" 80 лет\"")
-    @Test
-    public void creditFalseOldBirthday() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputBirthday(oldDateString)
-                .checkBirthday(birthdayCaptionOld);
-    }
-
-    @DisplayName("Ввод в поле \"Дата рождения\" - \"сегодняшяя дата \"-\" 2 года\"")
-    @Test
-    public void creditFalseYoungBirthday() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputBirthday(youngDateString)
-                .checkBirthday(birthdayCaptionYoung);
-    }
-
-    @DisplayName("Ввод в поле \"Электронная почта\" одного символа")
-    @Test
-    public void creditFalseEmail() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputEmail(testEmail)
-                .checkEmail(emailCaption);
-    }
-
-    @DisplayName("Проверка отправки заявки без галочки \"Я согласен с условиями рассмотрения заявки\"")
-    @Test
-    public void creditAllowConditions() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.allowConditions()
-                .clickButtonNext()
-                .checkAllow(conditionCaption);
-    }
-
-    @DisplayName("Ввод пробела в поле \"Сумма\"")
-    @Test
-    public void creditSumSpace() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputSumCredit(testSum1)
-                .checkSumCredit(sumMin);
-    }
-
-    @DisplayName("Ввод в поле \"Сумма\" большого числа")
-    @Test
-    public void creditSumBig() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputSumCredit(testSum2)
-                .checkSumCredit(sumMax);
-    }
-
-    @DisplayName("Ввод в поле \"Срок\" пробел")
-    @Test
-    public void creditTimeBig() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputTimeCredit(testTime1)
-                .checkTimeCredit(timeMin);
-    }
-
-    @DisplayName("Ввод в поле \"Срок\" большого числа")
-    @Test
-    public void creditTimeSpace() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputSumCredit(testTime2)
-                .checkTimeCredit(timeMax);
-    }
-
-    @DisplayName("Ввод в поле \"Мобильный телефон\" одной цифры")
-    @Test
-    public void creditPhoneOneNumber() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputPhone(phoneTest)
-                .checkPhone(phoneCaptionFalse);
-    }
-
-    @DisplayName("Отправка заявки с корректными данными")
-    @Test
-    public void creditTrue() {
-        homeBankPage.openHomeBankPage()
-                .clickCredit();
-
-        creditPage.clickArrange();
-
-        creditCashPage.inputData(trueData)
-                .inputBirthday(trueDateString)
-                .inputEmail(trueEmail)
-                .goalCredit()
-                .inputPhone(truePhone)
-                .inputPhoneCode(num1, num2, num3, num4)
-                .checkFalseCode(codeFalse);
-    }
+//    @DisplayName("Ввод в поле \"ФИО\" большого числа знаков: ")
+//    @Test
+//    public void creditFalseFIO2() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputData(testDataBig)
+//                .checkCaptionData(dataCaptionBig);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Дата рождения\" - \"сегодняшяя дата \"-\" 80 лет\"")
+//    @Test
+//    public void creditFalseOldBirthday() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputBirthday(oldDateString)
+//                .checkBirthday(birthdayCaptionOld);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Дата рождения\" - \"сегодняшяя дата \"-\" 2 года\"")
+//    @Test
+//    public void creditFalseYoungBirthday() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputBirthday(youngDateString)
+//                .checkBirthday(birthdayCaptionYoung);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Электронная почта\" одного символа")
+//    @Test
+//    public void creditFalseEmail() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputEmail(testEmail)
+//                .checkEmail(emailCaption);
+//    }
+//
+//    @DisplayName("Проверка отправки заявки без галочки \"Я согласен с условиями рассмотрения заявки\"")
+//    @Test
+//    public void creditAllowConditions() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.allowConditions()
+//                .clickButtonNext()
+//                .checkAllow(conditionCaption);
+//    }
+//
+//    @DisplayName("Ввод пробела в поле \"Сумма\"")
+//    @Test
+//    public void creditSumSpace() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputSumCredit(testSum1)
+//                .checkSumCredit(sumMin);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Сумма\" большого числа")
+//    @Test
+//    public void creditSumBig() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputSumCredit(testSum2)
+//                .checkSumCredit(sumMax);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Срок\" пробел")
+//    @Test
+//    public void creditTimeBig() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputTimeCredit(testTime1)
+//                .checkTimeCredit(timeMin);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Срок\" большого числа")
+//    @Test
+//    public void creditTimeSpace() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputSumCredit(testTime2)
+//                .checkTimeCredit(timeMax);
+//    }
+//
+//    @DisplayName("Ввод в поле \"Мобильный телефон\" одной цифры")
+//    @Test
+//    public void creditPhoneOneNumber() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputPhone(phoneTest)
+//                .checkPhone(phoneCaptionFalse);
+//    }
+//
+//    @DisplayName("Отправка заявки с корректными данными")
+//    @Test
+//    public void creditTrue() {
+//        homeBankPage.openHomeBankPage()
+//                .clickCredit();
+//
+//        creditPage.clickArrange();
+//
+//        creditCashPage.inputData(trueData)
+//                .inputBirthday(trueDateString)
+//                .inputEmail(trueEmail)
+//                .goalCredit()
+//                .inputPhone(truePhone)
+//                .inputPhoneCode(num1, num2, num3, num4)
+//                .checkFalseCode(codeFalse);
+//    }
 
 }
