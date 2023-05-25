@@ -14,17 +14,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 public abstract class BaseMobileTest {
     public static final ProjectConfig configM = ConfigFactory.create(ProjectConfig.class);
 
-//    @BeforeEach //для локальной работы
-//    public void setUp() {
-//        WebDriverManager.chromedriver().setup();
-//        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
-//        Configuration.browser = "chrome";
-//        Configuration.driverManagerEnabled = true;
-//        Configuration.browserSize = "1440x900";
-//        Configuration.timeout = 50000;
-//        Configuration.pageLoadTimeout = 50000;
-//    }
-
     @BeforeEach //для работы на виртуальной машине
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -32,12 +21,10 @@ public abstract class BaseMobileTest {
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "600x900";
-//        Configuration.timeout = 100000;
-//        Configuration.pageLoadTimeout = 100000;
-//        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-//        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
+
     @AfterEach
     public void turnDown() {
         Selenide.clearBrowserCookies();

@@ -16,31 +16,14 @@ public abstract class BaseTest {
 
     public static final ProjectConfig config = ConfigFactory.create(ProjectConfig.class);
 
-//    @BeforeEach //для локальной работы
-//    public void setUp() {
-//        WebDriverManager.chromedriver().setup();
-//        Configuration.browser = "chrome";
-//        Configuration.driverManagerEnabled = true;
-//        Configuration.browserSize = "1440x900";
-//        Configuration.timeout = 50000;
-//        Configuration.pageLoadTimeout = 50000;
-//    }
-
     @BeforeEach //для работы на виртуальной машине
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
         Configuration.browserSize = "1440x900";
-//        Configuration.timeout = 50000;
-//        Configuration.pageLoadTimeout = 50000;
-//        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-//        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("enableVNC", true);
-//        capabilities.setCapability("enableVideo", true);
-//        Configuration.browserCapabilities = capabilities;
     }
 
 
