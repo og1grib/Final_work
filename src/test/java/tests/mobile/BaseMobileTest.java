@@ -10,31 +10,24 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
-
 public abstract class BaseMobileTest {
     public static final ProjectConfig configM = ConfigFactory.create(ProjectConfig.class);
 
-    @BeforeEach
+    @BeforeEach //для работы на виртуальной машине
     public void setUp() {
         WebDriverManager.chromedriver().setup();
+        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
-        Configuration.headless = true;
+        Configuration.browserSize = "600x900";
         Configuration.pageLoadStrategy = "eager";
-        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
-        addListener("AllureSelenide", new AllureSelenide().savePageSource(false));
-    }
-
-    @AfterEach
-    public void cleanConfiguration() {
-        Selenide.clearBrowserCookies();
-        Selenide.clearBrowserLocalStorage();
-        System.clearProperty("chromeoptions.mobileEmulation");
+        Configuration.remote = "http://localhost:4444/wd/hub";
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
     public void turnDown() {
+        Selenide.clearBrowserCookies();
         Selenide.closeWebDriver();
     }
 }
