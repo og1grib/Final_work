@@ -17,7 +17,6 @@ public abstract class BaseMobileTest {
 //    @BeforeEach //для локальной работы
 //    public void setUp() {
 //        WebDriverManager.chromedriver().setup();
-//        Selenide.clearBrowserCookies();
 //        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
 //        Configuration.browser = "chrome";
 //        Configuration.driverManagerEnabled = true;
@@ -29,23 +28,19 @@ public abstract class BaseMobileTest {
     @BeforeEach //для работы на виртуальной машине
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        Selenide.clearBrowserCookies();
         System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
-        Configuration.browserSize = "1440x900";
-        Configuration.timeout = 100000;
-        Configuration.pageLoadTimeout = 100000;
-        Configuration.remote = "http://localhost:4444/wd/hub";
+        Configuration.browserSize = "600x900";
+//        Configuration.timeout = 100000;
+//        Configuration.pageLoadTimeout = 100000;
+//        Configuration.remote = "http://localhost:4444/wd/hub";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
-//        DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("enableVNC", true);
-//        capabilities.setCapability("enableVideo", true);
-//        Configuration.browserCapabilities = capabilities;
+//        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
     @AfterEach
     public void turnDown() {
+        Selenide.clearBrowserCookies();
         Selenide.closeWebDriver();
     }
 }
