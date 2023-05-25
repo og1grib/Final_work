@@ -62,6 +62,7 @@ public class HomeBankPage {
         $(DATE_CAPTION).parent().parent().lastChild().shouldHave(Condition.text(fieldEmpty));
         return this;
     }
+
     @Step("Вводим в поле номера телефона: {0}")
     public HomeBankPage inputPhoneField(int phone) {
         $(PHONE_INPUT_FIELD).click();
@@ -113,6 +114,7 @@ public class HomeBankPage {
         $(FALSE_CODE).shouldHave(Condition.text(falseCodeField));
         return this;
     }
+
     @Step("Переходим во вкладку \"Вклады и счета\"")
     public HomeBankPage clickDepositsAccounts() {
         $(DEPOSITS_AND_ACCOUNTS).click();
