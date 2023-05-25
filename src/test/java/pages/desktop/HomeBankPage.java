@@ -125,6 +125,7 @@ public class HomeBankPage {
         return this;
     }
 
+    @Step("Переходим во вкладку \"Малый бизнес и ИП\"")
     public HomeBankPage clickBusinessAndIp() {
         $(BUSINESS_AND_IP).click();
         return this;
