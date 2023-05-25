@@ -23,6 +23,7 @@ public abstract class BaseMobileTest {
         Configuration.pageLoadStrategy = "eager";
         Configuration.remote = "http://localhost:4444/wd/hub";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
 
     @AfterEach
