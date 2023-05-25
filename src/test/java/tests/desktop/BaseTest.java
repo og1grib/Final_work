@@ -23,6 +23,7 @@ public abstract class BaseTest {
         Configuration.browserSize = "1440x900";
         Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        Configuration.remote = "http://localhost:4444";
     }
 
 
