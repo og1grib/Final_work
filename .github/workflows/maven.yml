@@ -11,16 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: "Скачивание selenoid"
+      - name: "Скачивание Selenoid"
         run: curl -s https://aerokube.com/cm/bash  | bash
-      - name: "Расширение прав на запуск selenoid"
+
+      - name: "Расширение прав на запуск Selenoid"
         run: chmod +x ./cm
-      - name: "Запуск selenoid"
+
+      - name: "Запуск Selenoid"
         run: ./cm selenoid start --vnc
-      - name: "Запуск selenoid-ui"
+
+      - name: "Запуск Selenoid-ui"
         run: ./cm selenoid-ui start
+
       - name: "Использование ветки main репозитория"
         uses: actions/checkout@v3
+
       - name: "Запуск тестов"
         run: mvn clean test
         continue-on-error: true

@@ -13,21 +13,22 @@ import org.junit.jupiter.api.BeforeEach;
 public abstract class BaseMobileTest {
     public static final ProjectConfig configM = ConfigFactory.create(ProjectConfig.class);
 
-    @BeforeEach //для работы на виртуальной машине
+    @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
-        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
-        Configuration.browserSize = "600x900";
+        Configuration.headless = true;
         Configuration.pageLoadStrategy = "eager";
-        Configuration.remote = "http://localhost:4444/wd/hub";
+        System.setProperty("chromeoptions.mobileEmulation", "deviceName=Nexus 5");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
-    public void turnDown() {
+    public void turnDownAndCleanConfiguration() {
         Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
+        System.clearProperty("chromeoptions.mobileEmulation");
         Selenide.closeWebDriver();
     }
 }

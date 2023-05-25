@@ -9,5 +9,8 @@
         <module name="MTS_final" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MTS_final_Web" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

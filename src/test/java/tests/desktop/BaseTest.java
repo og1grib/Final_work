@@ -10,16 +10,16 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-
 public abstract class BaseTest {
 
     public static final ProjectConfig config = ConfigFactory.create(ProjectConfig.class);
 
-    @BeforeEach //для работы на виртуальной машине
+    @BeforeEach
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         Configuration.browser = "chrome";
         Configuration.driverManagerEnabled = true;
+        Configuration.headless = true;
         Configuration.browserSize = "1440x900";
         Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
@@ -27,8 +27,9 @@ public abstract class BaseTest {
 
 
     @AfterEach
-    public void turnDown() {
+    public void turnDownAndCleanConfiguration() {
         Selenide.clearBrowserCookies();
+        Selenide.clearBrowserLocalStorage();
         Selenide.closeWebDriver();
     }
 }
