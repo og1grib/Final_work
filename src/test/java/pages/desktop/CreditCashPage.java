@@ -57,7 +57,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"ФИО\" {0}")
     public CreditCashPage inputData(String data) {
-        $(DATA_FIELD).clear();
+        $(DATA_FIELD).scrollTo().clear();
         $(DATA_FIELD).setValue(data);
         $(BUTTON_NEXT).click();
         return this;
@@ -71,7 +71,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"Дата рождения\" {0}")
     public CreditCashPage inputBirthday(String birthday) {
-        $(BIRTHDAY_FIELD).sendKeys(Keys.CONTROL + "a");
+        $(BIRTHDAY_FIELD).scrollTo().sendKeys(Keys.CONTROL + "a");
         $(BIRTHDAY_FIELD).sendKeys(Keys.BACK_SPACE);
         $(BIRTHDAY_FIELD).setValue(birthday);
         $(BUTTON_NEXT).click();
@@ -86,7 +86,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"Мобильный телефон\" {0}")
     public CreditCashPage inputPhone(int phone) {
-        $(PHONE_FIELD).click();
+        $(PHONE_FIELD).scrollTo().click();
         $(PHONE_FIELD).sendKeys(Keys.CONTROL + "a");
         $(PHONE_FIELD).sendKeys(Keys.BACK_SPACE);
         $(PHONE_FIELD).setValue(String.valueOf(phone));
@@ -102,7 +102,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"Электронная почта\" {0}")
     public CreditCashPage inputEmail(String email) {
-        $(EMAIL_FIELD).click();
+        $(EMAIL_FIELD).scrollTo().click();
         $(EMAIL_FIELD).sendKeys(Keys.CONTROL + "a");
         $(EMAIL_FIELD).sendKeys(Keys.BACK_SPACE);
         $(EMAIL_FIELD).setValue(String.valueOf(email));
@@ -130,7 +130,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"Сумма\" {0}")
     public CreditCashPage inputSumCredit(String sum) {
-        $(SUM_CREDIT_FIELD).click();
+        $(SUM_CREDIT_FIELD).scrollTo().click();
         $(SUM_CREDIT_FIELD).setValue(sum);
         return this;
     }
@@ -144,7 +144,7 @@ public class CreditCashPage {
 
     @Step("Вводим в поле \"Срок\" {0}")
     public CreditCashPage inputTimeCredit(String time) {
-        $(TIME_CREDIT_FIELD).click();
+        $(TIME_CREDIT_FIELD).scrollTo().click();
         $(TIME_CREDIT_FIELD).setValue(time);
         return this;
     }
