@@ -30,10 +30,6 @@ public class HomeBankPage {
 
     private final static By CREDIT = By.xpath("//a[@ href='/chastnim-licam/krediti/']");
 
-    private final static By IPOTEKA = By.xpath("//a [@ href='/chastnim-licam/ipoteka/']");
-
-    private final static By BUSINESS_AND_IP = By.xpath("//a [@ href='/malomu-biznesu/']");
-
     private final static By PHONE_CODE_1 = By.xpath("//input[@ autocomplete='one-time-code'][1]");
 
     private final static By PHONE_CODE_2 = By.xpath("//input[@ autocomplete='one-time-code'][2]");
@@ -124,12 +120,6 @@ public class HomeBankPage {
     @Step("Переходим во вкладку \"Кредиты\"")
     public HomeBankPage clickCredit() {
         $(CREDIT).click();
-        return this;
-    }
-
-    @Step("Переходим во вкладку \"Малый бизнес и ИП\"")
-    public HomeBankPage clickBusinessAndIp() {
-        $(BUSINESS_AND_IP).click();
         return this;
     }
 

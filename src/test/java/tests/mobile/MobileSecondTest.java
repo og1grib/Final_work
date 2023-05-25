@@ -18,7 +18,7 @@ public class MobileSecondTest extends BaseMobileTest {
     private final static long testPhone1 = 1L;
     private final static long testPhone2 = 1111111111L;
 
-    private final static long truePhone = 9999999999L;
+    private final static long truePhone = 9999999998L;
 
     private final static int maxCode = 9999;
     private final static int minCode = 1111;
