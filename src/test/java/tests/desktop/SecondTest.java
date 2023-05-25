@@ -82,152 +82,152 @@ public class SecondTest extends BaseTest {
                 .checkTimeDeposit(valueFieldTime2);
     }
 
-//    @DisplayName("Ввод в поле \"Срок вклада\" большое значение")
-//    @Test
-//    public void depositAndAccountsTimeBig() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputTimeDeposit(testTime1)
-//                .checkTimeDeposit(valueFieldTime1);
-//    }
-//
-//    @DisplayName("Ввод пробела в поле \"Срок вклада\" значение \"22\" - между 20 и 24")
-//    @Test
-//    public void depositAndAccountsTimeBetween() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputTimeDeposit(testTime3)
-//                .checkTimeDeposit(valueFieldTime3);
-//    }
-//
-//    @DisplayName("Нажать на кнопку с цифрой под полем \"Срок вклада\"")
-//    @Test
-//    public void depositAndAccountsTimeButton() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputTimeDepositTrue()
-//                .checkTimeDeposit(valueFieldTime4);
-//    }
-//
-//    @DisplayName("Проверка данных на странице с выбором вклада и на отдельной странице вклада")
-//    @Test
-//    public void depositAndAccountsCheckData() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline();
-//
-//        String stavka = depositsPage.checkStavka();
-//        String profit = depositsPage.checkProfit();
-//        String profitEnd = depositsPage.checkProfitEnd();
-//
-//        depositsPage.openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .checkDepositValues(stavka, profit, profitEnd);
-//    }
-//
-//    @DisplayName("Проверка отправления заявки с пустыми полями")
-//    @Test
-//    public void depositAndAccountsEmptyField() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline()
-//                .openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .clickArrange()
-//                .clickSend()
-//                .checkCaptions(nameCaption, phoneCaption, cityCaption, officeCaption);
-//    }
-//
-//    @DisplayName("Ввод на отдельной странице вклада в поле \"ФИО\" чисел и английских букв")
-//    @ParameterizedTest
-//    @ValueSource(strings = {"0", "Petr Petrov"})
-//    public void depositAndAccountsFalseFIO(String name) {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline()
-//                .openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .clickArrange()
-//                .inputData(name)
-//                .checkInputFalseData(dataFalseCaption1);
-//    }
-//
-//    @DisplayName("Ввод на отдельной странице вклада в поле \"ФИО\" одной буквы")
-//    @Test
-//    public void depositAndAccountsOneCharFIO() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline()
-//                .openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .clickArrange()
-//                .inputData(testName)
-//                .checkInputFalseData(dataFalseCaption2);
-//    }
-//
-//
-//    @DisplayName("Ввод на отдельной странице вклада в поле \"Мобильный телефон\" одной цифры")
-//    @Test
-//    public void depositAndAccountsOneNumberPhone() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline()
-//                .openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .clickArrange()
-//                .clickSend()
-//                .inputPhone(testPhone)
-//                .checkPhone(phoneCaption);
-//    }
-//
-//    @DisplayName("Заполнение и отправка формы на депозит на отдельной странице")
-//    @Test
-//    public void depositAndAccountsTrue() {
-//        homeBankPage.openHomeBankPage()
-//                .clickDepositsAccounts();
-//
-//        depositsPage.inputSumDeposit(testSum2)
-//                .inputTimeDepositTrue()
-//                .wantFillAndOpenOnline()
-//                .openDeposit();
-//
-//
-//        depositConvenientPage.setupDeposit(time, sum)
-//                .clickArrange()
-//                .clickSend()
-//                .inputData(trueName)
-//                .inputPhone(truePhone)
-//                .chooseCity()
-//                .chooseOffice()
-//                .clickSend()
-//                .checkApply(applyCaption);
-//    }
+    @DisplayName("Ввод в поле \"Срок вклада\" большое значение")
+    @Test
+    public void depositAndAccountsTimeBig() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputTimeDeposit(testTime1)
+                .checkTimeDeposit(valueFieldTime1);
+    }
+
+    @DisplayName("Ввод пробела в поле \"Срок вклада\" значение \"22\" - между 20 и 24")
+    @Test
+    public void depositAndAccountsTimeBetween() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputTimeDeposit(testTime3)
+                .checkTimeDeposit(valueFieldTime3);
+    }
+
+    @DisplayName("Нажать на кнопку с цифрой под полем \"Срок вклада\"")
+    @Test
+    public void depositAndAccountsTimeButton() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputTimeDepositTrue()
+                .checkTimeDeposit(valueFieldTime4);
+    }
+
+    @DisplayName("Проверка данных на странице с выбором вклада и на отдельной странице вклада")
+    @Test
+    public void depositAndAccountsCheckData() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline();
+
+        String stavka = depositsPage.checkStavka();
+        String profit = depositsPage.checkProfit();
+        String profitEnd = depositsPage.checkProfitEnd();
+
+        depositsPage.openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .checkDepositValues(stavka, profit, profitEnd);
+    }
+
+    @DisplayName("Проверка отправления заявки с пустыми полями")
+    @Test
+    public void depositAndAccountsEmptyField() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline()
+                .openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .clickArrange()
+                .clickSend()
+                .checkCaptions(nameCaption, phoneCaption, cityCaption, officeCaption);
+    }
+
+    @DisplayName("Ввод на отдельной странице вклада в поле \"ФИО\" чисел и английских букв")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "Petr Petrov"})
+    public void depositAndAccountsFalseFIO(String name) {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline()
+                .openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .clickArrange()
+                .inputData(name)
+                .checkInputFalseData(dataFalseCaption1);
+    }
+
+    @DisplayName("Ввод на отдельной странице вклада в поле \"ФИО\" одной буквы")
+    @Test
+    public void depositAndAccountsOneCharFIO() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline()
+                .openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .clickArrange()
+                .inputData(testName)
+                .checkInputFalseData(dataFalseCaption2);
+    }
+
+
+    @DisplayName("Ввод на отдельной странице вклада в поле \"Мобильный телефон\" одной цифры")
+    @Test
+    public void depositAndAccountsOneNumberPhone() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline()
+                .openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .clickArrange()
+                .clickSend()
+                .inputPhone(testPhone)
+                .checkPhone(phoneCaption);
+    }
+
+    @DisplayName("Заполнение и отправка формы на депозит на отдельной странице")
+    @Test
+    public void depositAndAccountsTrue() {
+        homeBankPage.openHomeBankPage()
+                .clickDepositsAccounts();
+
+        depositsPage.inputSumDeposit(testSum2)
+                .inputTimeDepositTrue()
+                .wantFillAndOpenOnline()
+                .openDeposit();
+
+
+        depositConvenientPage.setupDeposit(time, sum)
+                .clickArrange()
+                .clickSend()
+                .inputData(trueName)
+                .inputPhone(truePhone)
+                .chooseCity()
+                .chooseOffice()
+                .clickSend()
+                .checkApply(applyCaption);
+    }
 }

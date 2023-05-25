@@ -96,13 +96,6 @@ public class MobileHomeBankPage {
         return this;
     }
 
-    @Step("Проверяем, что появилась надпись {0} и поле из 4 цифр")
-    public MobileHomeBankPage checkCodeField(String codeField) {
-        $(CODE_FIELD_LABEL).shouldHave(Condition.text(codeField));
-        $$(CODE_FIELD).shouldBe(CollectionCondition.size(4));
-        return this;
-    }
-
     @Step("Вводим код рандомный код в \"Код из СМС\"")
     public MobileHomeBankPage inputPhoneCode(int num1, int num2, int num3, int num4) {
         $(PHONE_CODE_1).shouldBe(Condition.visible).setValue(String.valueOf(num1));

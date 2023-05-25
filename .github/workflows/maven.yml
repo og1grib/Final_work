@@ -1,4 +1,4 @@
-name: WEB tests MTS
+name: WEB tests MTS Bank
 
 env:
   OS: ubuntu-latest
@@ -29,16 +29,17 @@ jobs:
       - name: "Запуск тестов"
         run: mvn clean test
         continue-on-error: true
-      - name: "Генерация allure-report"
+
+      - name: "Генерация Allure-report"
         uses: simple-elf/allure-report-action@master
         id: allure-report
         with:
-          allure_results: target/allure-results
           gh_pages: gh-pages
+          allure_results: target/allure-results
           allure_report: target/allure-report
           allure_history: target/allure-history
 
-      - name: "Создание ветки gh-pages содержащей allure report"
+      - name: "Создание ветки gh-pages содержащей Allure report"
         uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}

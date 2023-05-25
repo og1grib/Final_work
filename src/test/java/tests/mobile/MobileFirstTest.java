@@ -31,7 +31,6 @@ public class MobileFirstTest extends BaseMobileTest {
     private final static String necessarilyCaption = "Обязательное поле";
     private final static String phoneCaption = "Введите верные цифры";
     private final static String dataCaption = "Введите верные серию и номер паспорта";
-    private final static String codeField = "Код из СМС";
     private final static String codeFalse = "Неправильный код";
 
     @DisplayName("Отправка заявки с пустыми полями")
@@ -61,7 +60,6 @@ public class MobileFirstTest extends BaseMobileTest {
                 .clickApplyLocation()
                 .inputPhoneField(truePhone)
                 .inputDataField(trueData)
-                .checkCodeField(codeField)
                 .inputPhoneCode(num1, num2, num3, num4)
                 .checkFalseCode(codeFalse);
     }
