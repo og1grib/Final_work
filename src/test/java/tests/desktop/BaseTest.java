@@ -23,6 +23,7 @@ public abstract class BaseTest {
         Configuration.browserSize = "1440x900";
         Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
 
 

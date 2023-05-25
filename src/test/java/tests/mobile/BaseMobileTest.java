@@ -22,6 +22,7 @@ public abstract class BaseMobileTest {
         Configuration.browserSize = "600x900";
         Configuration.pageLoadStrategy = "eager";
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+        System.setProperty("chromeoptions.args", "\"--no-sandbox\",\"--disable-dev-shm-usage\",\"--remote-debugging-port=9222\"");
     }
 
     @AfterEach
